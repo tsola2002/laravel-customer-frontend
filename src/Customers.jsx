@@ -1,5 +1,6 @@
 import  { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const CustomerList = () => {
     const [data, setData] = useState([]);
@@ -58,8 +59,8 @@ const CustomerList = () => {
                             <td className="">{customer.state}</td>
                             <td className="">{customer.postalCode}</td>
                             <td className=" text-center space-x-2">
-                                <button className="text-blue-600 hover:underline">Edit</button>
-                                <button onClick={() => deleteCustomer(customer.id)} className="text-red-600 hover:underline">Delete</button>
+                            <Link to={`/edit/${customer.id}`} className="bg-yellow-500 text-white px-2 rounded">Edit</Link>
+                                <button onClick={() => deleteCustomer(customer.id)} className="bg-red-500 text-white px-2 rounded">Delete</button>
                             </td>
                         </tr>
                     ))}
