@@ -9,7 +9,8 @@ function EditCustomer() {
 
   useEffect(() => {
     axios.get(`http://127.0.0.1:8000/api/v1/customers/${id}`)
-      .then(response => setFormData(response.data))
+      //.then(response => setFormData(response.data))
+      .then(response => setFormData(response.data.data))  
       .catch(error => console.error('Error fetching customer:', error));
   }, [id]);
 
