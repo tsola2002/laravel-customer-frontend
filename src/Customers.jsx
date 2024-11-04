@@ -18,6 +18,12 @@ const CustomerList = () => {
         });
     };
 
+    const deleteCustomer = (id) => {
+        axios.delete(`http://127.0.0.1:8000/api/v1/customers/${id}`)
+          .then(() => setData(data.filter(customer => customer.id !== id)))
+          .catch(error => console.error('Error deleting customer:', error));
+      };
+
     useEffect(() => {
         fetchCustomers("http://127.0.0.1:8000/api/v1/customers?page=1");
     }, []);
@@ -53,7 +59,7 @@ const CustomerList = () => {
                             <td className="">{customer.postalCode}</td>
                             <td className=" text-center space-x-2">
                                 <button className="text-blue-600 hover:underline">Edit</button>
-                                <button className="text-red-600 hover:underline">Delete</button>
+                                <button onClick={() => deleteCustomer(customer.id)} className="text-red-600 hover:underline">Delete</button>
                             </td>
                         </tr>
                     ))}
